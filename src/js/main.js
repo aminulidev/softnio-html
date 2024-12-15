@@ -12,6 +12,7 @@ const cartItems = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cartTotal');
 const totalQtyText = document.getElementById('totalQty');
 const continueShopping = document.getElementById('continue-shopping');
+const toast = document.getElementById('toast');
 
 // initial product data
 let product = {
@@ -30,7 +31,6 @@ bandColors.forEach(input => {
 		if (input.checked) {
 			const selectedColor = input.value;
 
-			// Add slide-out class
 			thumbnail.classList.add("slide-out");
 
 			// Wait for the slide-out animation to finish
@@ -137,9 +137,30 @@ document.getElementById('add-to-cart').addEventListener('click', () => {
 
 	if (existingItem) {
 		existingItem.qty += product.qty;
+
+		setTimeout(() => {
+			toast.classList.remove("opacity-0");
+			toast.classList.add("opacity-100");
+		}, 1000);
+
+		setTimeout(() => {
+			toast.classList.remove("opacity-100");
+			toast.classList.add("opacity-0");
+		}, 5000);
+
 	} else {
 		const productCopy = { ...product };
 		cart.push(productCopy);
+
+		setTimeout(() => {
+			toast.classList.remove("opacity-0");
+			toast.classList.add("opacity-100");
+		}, 1000);
+
+		setTimeout(() => {
+			toast.classList.remove("opacity-100");
+			toast.classList.add("opacity-0");
+		}, 5000);
 	}
 
 	cartCount.textContent = cart.length;
