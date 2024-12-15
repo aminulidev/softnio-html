@@ -43,7 +43,7 @@ bandColors.forEach(input => {
 				product.color = selectedColor;
 				product.image = thumbnail.getAttribute("src");
 
-				console.log("product", product);
+				// console.log("product", product);
 
 				// Remove slide-out and add slide-in class
 				thumbnail.classList.remove("slide-out");
@@ -72,7 +72,7 @@ sizeButtons.forEach(button => {
 		product.size = productSize.textContent;
 		product.price = price;
 
-		console.log("product", product);
+		// console.log("product", product);
 	});
 });
 
@@ -102,7 +102,7 @@ decrement.addEventListener('click', () => {
 
 		product.qty = parseInt(quantity.textContent);
 
-		console.log("product", product);
+		// console.log("product", product);
 	}
 });
 
@@ -115,14 +115,14 @@ increment.addEventListener('click', () => {
 
 		product.qty = parseInt(quantity.textContent);
 
-		console.log("product", product);
+		// console.log("product", product);
 	}
 });
 
 // Initialize button states on page load
 updateQty();
 
-console.log("product", product);
+// console.log("product", product);
 
 // Add to cart functionality
 document.getElementById('add-to-cart').addEventListener('click', () => {
@@ -171,8 +171,8 @@ document.getElementById('add-to-cart').addEventListener('click', () => {
 cartButton.addEventListener('click', () => {
 	cartModal.classList.remove('opacity-0', 'pointer-events-none');
 	cartModal.classList.add('opacity-100');
-	cartModal.querySelector('div').classList.remove('scale-95');
-	cartModal.querySelector('div').classList.add('scale-100');
+	cartModal.querySelector('.modal_content').classList.remove('scale-95');
+	cartModal.querySelector('.modal_content').classList.add('scale-100');
 	updateCart();
 });
 
@@ -180,8 +180,8 @@ cartButton.addEventListener('click', () => {
 continueShopping.addEventListener('click', () => {
 	cartModal.classList.add('opacity-0', 'pointer-events-none');
 	cartModal.classList.remove('opacity-100');
-	cartModal.querySelector('div').classList.add('scale-95');
-	cartModal.querySelector('div').classList.remove('scale-100');
+	cartModal.querySelector('.modal_content').classList.add('scale-95');
+	cartModal.querySelector('.modal_content').classList.remove('scale-100');
 });
 
 // Update cart modal
