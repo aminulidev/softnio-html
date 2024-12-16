@@ -654,8 +654,6 @@ video {
 .button_secondary:hover{
   --tw-border-opacity: 1;
   border-color: rgb(101 118 255 / var(--tw-border-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(101 118 255 / var(--tw-text-opacity, 1));
 }
 
 .pointer-events-none{
@@ -672,10 +670,6 @@ video {
 
 .inset-0{
   inset: 0px;
-}
-
-.bottom-10{
-  bottom: 2.5rem;
 }
 
 .bottom-5{
@@ -1331,18 +1325,6 @@ body {
 @media (min-width: 1024px){
   .lg\:max-w-full{
     max-width: 100%;
-  }
-
-  .lg\:max-w-\[90\%\]{
-    max-width: 90%;
-  }
-
-  .lg\:max-w-\[80\%\]{
-    max-width: 80%;
-  }
-
-  .lg\:max-w-\[85\%\]{
-    max-width: 85%;
   }
 
   .lg\:grid-cols-2{

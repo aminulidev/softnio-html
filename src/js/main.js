@@ -37,7 +37,8 @@ bandColors.forEach(input => {
 			setTimeout(() => {
 				// Update the image source
 				const currentSrc = thumbnail.getAttribute("src");
-				const updatedSrc = currentSrc.replace(/(.*\/)[a-z]+(-device\.png)$/i, `$1${selectedColor}$2`);
+				const imgSrcRegex = /(.*\/)[a-z]+(-device\.png)$/i;
+				const updatedSrc = currentSrc.replace(imgSrcRegex, `$1${selectedColor}$2`);
 				thumbnail.setAttribute("src", updatedSrc);
 
 				product.color = selectedColor;
@@ -45,7 +46,6 @@ bandColors.forEach(input => {
 
 				// console.log("product", product);
 
-				// Remove slide-out and add slide-in class
 				thumbnail.classList.remove("slide-out");
 				thumbnail.classList.add("slide-in");
 
@@ -80,17 +80,11 @@ sizeButtons.forEach(button => {
 let qty = parseInt(quantity.textContent);
 
 function updateQty() {
-	if (qty === 1) {
-		decrement.setAttribute('disabled', 'true');
-	} else {
-		decrement.removeAttribute('disabled');
-	}
+	if (qty === 1) decrement.setAttribute('disabled', 'true');
+	if (qty > 1) decrement.removeAttribute('disabled');
 
-	if (qty === 5) {
-		increment.setAttribute('disabled', 'true');
-	} else {
-		increment.removeAttribute('disabled');
-	}
+	if (qty === 5) increment.setAttribute('disabled', 'true');
+	if (qty < 5) increment.removeAttribute('disabled');
 }
 
 // Decrement button click event
@@ -99,7 +93,6 @@ decrement.addEventListener('click', () => {
 		qty--;
 		quantity.textContent = qty;
 		updateQty();
-
 		product.qty = parseInt(quantity.textContent);
 
 		// console.log("product", product);
@@ -112,24 +105,31 @@ increment.addEventListener('click', () => {
 		qty++;
 		quantity.textContent = qty;
 		updateQty();
-
 		product.qty = parseInt(quantity.textContent);
 
 		// console.log("product", product);
 	}
 });
 
-// Initialize button states on page load
+// Initialize states on page load
 updateQty();
 
-// console.log("product", product);
+// toast message
+const showToast = message => {
+	toast.textContent = message;
+	setTimeout(() => {
+		toast.classList.remove("opacity-0");
+		toast.classList.add("opacity-100");
+	}, 1000);
+
+	setTimeout(() => {
+		toast.classList.remove("opacity-100");
+		toast.classList.add("opacity-0");
+	}, 5000);
+}
 
 // Add to cart functionality
 document.getElementById('add-to-cart').addEventListener('click', () => {
-	// // Create a deep copy of the product object
-	// const productCopy = {...product};
-	// cart.push(productCopy);
-
 	// restrict to direct add duplicate item
 	const existingItem = cart.find(
 		item => item.color === product.color && item.size === product.size && item.price === product.price
@@ -138,29 +138,12 @@ document.getElementById('add-to-cart').addEventListener('click', () => {
 	if (existingItem) {
 		existingItem.qty += product.qty;
 
-		setTimeout(() => {
-			toast.classList.remove("opacity-0");
-			toast.classList.add("opacity-100");
-		}, 1000);
-
-		setTimeout(() => {
-			toast.classList.remove("opacity-100");
-			toast.classList.add("opacity-0");
-		}, 5000);
-
+		showToast("Product added to cart successfully!");
 	} else {
 		const productCopy = { ...product };
 		cart.push(productCopy);
 
-		setTimeout(() => {
-			toast.classList.remove("opacity-0");
-			toast.classList.add("opacity-100");
-		}, 1000);
-
-		setTimeout(() => {
-			toast.classList.remove("opacity-100");
-			toast.classList.add("opacity-0");
-		}, 5000);
+		showToast("Product added to cart successfully!");
 	}
 
 	cartCount.textContent = cart.length;
@@ -168,11 +151,12 @@ document.getElementById('add-to-cart').addEventListener('click', () => {
 });
 
 // Show cart modal
+const modalContent = cartModal?.querySelector('.modal_content');
 cartButton.addEventListener('click', () => {
 	cartModal.classList.remove('opacity-0', 'pointer-events-none');
 	cartModal.classList.add('opacity-100');
-	cartModal.querySelector('.modal_content').classList.remove('scale-95');
-	cartModal.querySelector('.modal_content').classList.add('scale-100');
+	modalContent.classList.remove('scale-95');
+	modalContent.classList.add('scale-100');
 	updateCart();
 });
 
@@ -180,8 +164,8 @@ cartButton.addEventListener('click', () => {
 continueShopping.addEventListener('click', () => {
 	cartModal.classList.add('opacity-0', 'pointer-events-none');
 	cartModal.classList.remove('opacity-100');
-	cartModal.querySelector('.modal_content').classList.add('scale-95');
-	cartModal.querySelector('.modal_content').classList.remove('scale-100');
+	modalContent.classList.add('scale-95');
+	modalContent.classList.remove('scale-100');
 });
 
 // Update cart modal

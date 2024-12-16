@@ -19,7 +19,7 @@ body {
         @apply h-9 px-4.5 py-2 rounded flex items-center justify-center bg-blue-600 text-white transition-all duration-300 text-sm font-bold hover:bg-opacity-90;
     }
     .button_secondary {
-        @apply h-9 px-4.5 py-2 rounded flex items-center justify-center border border-border text-titleText transition-all duration-300 text-sm font-bold hover:border-blue-600 hover:text-blue-600;
+        @apply h-9 px-4.5 py-2 rounded flex items-center justify-center border border-border text-titleText transition-all duration-300 text-sm font-bold hover:border-blue-600;
     }
 }
 
