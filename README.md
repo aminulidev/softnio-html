@@ -8,6 +8,19 @@
 # Live Preview
 [HTML Live Preview](https://aminulidev.github.io/softnio-html/src/)
 
-# Local run
-1. npm install
-2. npm run dev
+# Git Repo
+[softnio-html](https://github.com/aminulidev/softnio-html)
+
+
+# Convert Figma design into React
+
+# Use:
+1. React 18
+2. Tailwindcss
+3. Vite
+
+# Live Preview
+[React Live Preview](https://softnio-react.netlify.app/)
+
+# Git Repo
+[softnio-react](https://github.com/aminulidev/softnio-react)
