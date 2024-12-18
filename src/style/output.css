@@ -733,10 +733,6 @@ video {
   height: 2.25rem;
 }
 
-.h-auto{
-  height: auto;
-}
-
 .h-screen{
   height: 100vh;
 }
@@ -1337,6 +1333,15 @@ body {
 }
 
 @media (min-width: 1280px){
+  .xl\:max-h-128\.5{
+    max-height: 514px;
+  }
+
+  .xl\:object-fill{
+    -o-object-fit: fill;
+       object-fit: fill;
+  }
+
   .xl\:py-30{
     padding-top: 120px;
     padding-bottom: 120px;
@@ -1344,7 +1349,17 @@ body {
 }
 
 @media (min-width: 1536px){
+  .\32xl\:max-h-fit{
+    max-height: -moz-fit-content;
+    max-height: fit-content;
+  }
+
   .\32xl\:w-157\.5{
     width: 630px;
+  }
+
+  .\32xl\:object-none{
+    -o-object-fit: none;
+       object-fit: none;
   }
 }
